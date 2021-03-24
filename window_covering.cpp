@@ -188,6 +188,13 @@ void DeRestPluginPrivate::handleWindowCoveringClusterIndication(const deCONZ::Ap
                     lift = 100 - lift;
                 }
 
+                // revese lift based on name containing special character
+                if (lightNode->name().contains("^"))
+                {
+                    lift = 100 - lift;
+
+                }
+
                 bool open = lift < 100;
 
                 if (lightNode->setValue(RStateLift, lift))
